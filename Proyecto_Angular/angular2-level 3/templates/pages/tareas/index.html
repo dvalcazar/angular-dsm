@@ -1,0 +1,43 @@
+
+
+<!--<input ng-model="scope[field][subfield]"/>-->
+<input ng-model="search[filter]"/>
+<p>Filtrar por</p>
+<form id="filtrado" action="" >
+  <select class="form-control" ng-change="changeFilterTo(filtering)" ng-model="filtering">
+    <option ng-selected="true" value"$">No Filtrar</option>
+    <option value="title">Titulo</option>
+    <option value="description">Descripción</option>
+  </select>
+</form>
+<p>Ordenar por</p>
+<form id="ordenado" action="" >
+  <select class="form-control" ng-model="ordering">
+    <option value="">No Ordenar</option>
+    <option value="-date">Fecha ascenedente</option>
+    <option value="+date">Fecha descendente</option>
+  </select>
+</form>
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">TAREAS</h1>
+      <a class="btn-b" href='#/tareas/nueva'>
+        <i class="icon add"></i>
+        Crear nueva Tarea
+      </a>
+    </div>
+    <div class="note-wrapper">
+      <a class="card-notes"
+      ng-repeat="tarea in TareasIndex.tareas | orderBy: ordering | filter: search">
+        <na-elemento-tarea title="tarea.title"
+          description="tarea.description"
+          content="tarea.content">
+        </na-elemento-tarea>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+

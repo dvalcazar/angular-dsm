@@ -1,0 +1,22 @@
+
+
+<div class="users-wrapper">
+  <h1>Usuarios</h1>
+  <div class="users-wrapper">
+    <a class="card-users"
+      ng-repeat="usuario in UsuariosIndex.usuarios">
+      <na-elemento-tarea
+        title="usuario.name"
+        description="usuario.bio"
+        image="gravatarUrl(usuario.email)">
+      </na-elemento-tarea>
+    </a>
+  </div>
+</div>
+
+
+      <!--<div class="card" title="{{usuario.name}}">
+        <h2 class="h3">{{usuario.name}}</h2>
+        <p>{{usuario.bio}}</p>
+        <p>{{usuario.email}}</p>
+      </div>-->
