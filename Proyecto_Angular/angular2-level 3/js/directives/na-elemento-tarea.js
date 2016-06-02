@@ -9,7 +9,8 @@ angular.module('TareasApp')
         title: '=',
         description: '=',
         content: '=',
-        image: '='
+        image: '=',
+        identif: '='
       },
       controller: function($scope){
         $scope.cabecera = 'Título común';
@@ -17,6 +18,9 @@ angular.module('TareasApp')
       link: function(scope, element, attrs){
         element.on("click", ".card", function(){
           element.find("div.card p").toggleClass('hidden');
+        });
+        element.on("click","button",function(){
+          $(location).attr('href', '#/borrar/'+scope.identif);
         });      
       }
     };

@@ -32,7 +32,8 @@
       ng-repeat="tarea in TareasIndex.tareas | orderBy: ordering | filter: search">
         <na-elemento-tarea title="tarea.title"
           description="tarea.description"
-          content="tarea.content">
+          content="tarea.content"
+          identif="tarea.id">
         </na-elemento-tarea>
       </a>
     </div>

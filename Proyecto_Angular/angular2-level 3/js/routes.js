@@ -31,8 +31,8 @@ angular.module('TareasApp')
     controller: 'TareaShowController',
     controllerAs: 'tareaShowCtrl'
   })
-  .when('/borrar', {
-    templateUrl: 'templates/pages/tareas/tarea-borrar.html',
+  .when('/borrar/:id', {
+    templateUrl: 'templates/pages/borrar/borrar-tarea.html',
     controller: 'TareaBorrarController',
     controllerAs: 'tareaBorrarCtrl'
   })
