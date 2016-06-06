@@ -1,0 +1,13 @@
+<h1>Actualizar nickname</h1>
+
+<div class="new-note">
+<div class="new-note-container">
+<form name="reviewForm" class="form" ng-submit="actualizarUsuario(usuario)" novalidate>
+	<label class="form-label" for="description">Nickname</label>
+	<fieldset class="form-field">
+  		<input class="form-input" type="text" name="nickname" value={{usuario.nickname}} ng-model="usuario.nickname" required>
+  	</fieldset>
+	<button class="btn" type="Submit" ng-disabled="reviewForm.$invalid">Actualizar nickname</button>
+</form>
+</div>
+</div>

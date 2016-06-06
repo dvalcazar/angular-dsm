@@ -1,19 +1,17 @@
-
-
 <div class="new-note">
   <div class="new-note-container">
     <p ng-if="createController.errors"> {{tareaNuevaCtrl.errors}} </p>
-    <form class="form" ng-submit="tareaNuevaCtrl.guardaNuevaTarea()">
+    <form name="reviewForm" class="form" ng-submit="tareaNuevaCtrl.guardaNuevaTarea()" novalidate>
       <fieldset class="form-field">
         <label class="form-label" for="title">Title</label>
-        <input class="form-input" name="title" ng-model="tareaNuevaCtrl.tarea.header" />
+        <input class="form-input" name="title" ng-model="tareaNuevaCtrl.tarea.header" required/>
       </fieldset>
       <fieldset class="form-field">
         <label class="form-label" for="description">Description</label>
-        <textarea class="form-input" name="description" ng-model="tareaNuevaCtrl.tarea.description" placeholder="A short description of this note"></textarea>
+        <textarea class="form-input" name="description" ng-model="tareaNuevaCtrl.tarea.description" placeholder="A short description of this note" required></textarea>
       </fieldset>
 
-      <button class="btn" type="Submit">Crear Tarea</button>
+      <button class="btn" type="Submit" ng-disabled="reviewForm.$invalid">Crear Tarea</button>
     </form>
   </div>
 </div>

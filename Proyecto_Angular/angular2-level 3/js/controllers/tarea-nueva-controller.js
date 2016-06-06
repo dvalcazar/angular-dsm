@@ -1,5 +1,3 @@
-
-
 angular.module('TareasApp')
 .controller('TareaNuevaController', function($scope, Tarea) {
   this.tarea = {};
@@ -13,6 +11,6 @@ angular.module('TareasApp')
       controller.errors = tarea.data.error;
     })
     this.tarea = {};
+    document.location.href = "/";
   };
 });
-

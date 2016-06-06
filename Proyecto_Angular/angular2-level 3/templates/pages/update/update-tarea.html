@@ -1,0 +1,34 @@
+<h1>Actualizar tarea</h1>
+
+<div class="new-note">
+<div class="new-note-container">
+<form name="reviewForm" class="form" ng-submit="actualizarTarea(tarea)" novalidate>
+  <label class="form-label" for="description">Título</label>
+  <fieldset class="form-field">
+  <input class="form-input" type="text" name="title" value={{tarea.title}} ng-model="tarea.title" required>
+  </fieldset>
+  <label class="form-label" for="description">Descripción</label>
+  <fieldset class="form-field">
+  <textarea class="form-input" type="text" name="description" value={{tarea.description}} ng-model="tarea.description" required></textarea>
+  </fieldset>
+
+  <button class="btn" type="Submit" ng-disabled="reviewForm.$invalid">Actualizar campos</button>
+</form>
+</div>
+</div>
+
+
+<!-- <div class="note-wrapper">
+  <a class="card-notes">
+	    <na-elemento-tarea title="tareaEditarCtrl.tarea.title"
+	      description="tareaEditarCtrl.tarea.description"
+	      content="tareaEditarCtrl.tarea.content"
+	      identif="tareaEditarCtrl.tarea.id">
+	    </na-elemento-tarea>
+	</a>
+</div> 
+  <label class="form-label" for="description">Contenido</label>
+  <fieldset class="form-field">
+  <input class="form-input" type="text" name="content" value={{tarea.content}} ng-model="tarea.content">
+  </fieldset>
+-->

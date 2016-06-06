@@ -1,0 +1,13 @@
+<div class="new-note">
+  <div class="new-note-container">
+    <p ng-if="createController.errors"> {{usuarioNuevaCtrl.errors}} </p>
+    <form name="reviewForm"  class="form" ng-submit="usuarioNuevaCtrl.guardaNuevaUsuario()">
+      <fieldset class="form-field">
+        <label class="form-label" for="title">Nickname</label>
+        <input class="form-input" name="title" ng-model="usuarioNuevaCtrl.usuario.nickname" required/>
+      </fieldset>
+
+      <button class="btn" type="Submit" ng-disabled="reviewForm.$invalid">Crear Usuario</button>
+    </form>
+  </div>
+</div>

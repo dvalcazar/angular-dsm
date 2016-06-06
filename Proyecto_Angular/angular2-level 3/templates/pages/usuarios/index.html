@@ -1,19 +1,33 @@
-
-
+<!--
 <div class="users-wrapper">
-  <h1>Usuarios</h1>
   <div class="users-wrapper">
     <a class="card-users"
       ng-repeat="usuario in UsuariosIndex.usuarios">
-      <na-elemento-tarea
-        title="usuario.name"
-        description="usuario.bio"
-        image="gravatarUrl(usuario.email)">
-      </na-elemento-tarea>
+      <na-elemento-usuario
+        nickname="usuario.nickname">
+      </na-elemento-usuario>
     </a>
   </div>
 </div>
-
+-->
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Usuarios">USUARIOS</h1>
+      <a class="btn-b" href='#/usuarios/nueva'>
+        <i class="icon add"></i>
+        Crear nuevo Usuario
+      </a>
+    </div>
+    <div class="note-wrapper">
+      <a class="card-notes"
+      ng-repeat="usuario in UsuariosIndex.usuarios">
+        <na-elemento-usuario nickname="usuario.nickname">
+        </na-elemento-usuario>
+      </a>
+    </div>
+  </div>
+</div>
 
       <!--<div class="card" title="{{usuario.name}}">
         <h2 class="h3">{{usuario.name}}</h2>

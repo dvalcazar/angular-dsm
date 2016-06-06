@@ -5,24 +5,29 @@
     <meta charset="utf-8">
     <title>Tareas app</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/application.css" />
   </head>
 
-  <body>
-    <div class="nav-wrapper has-dropdown">
-      <div class="nav-content">
-        <div class="wrapper">
-          <div class="nav-content-layout">
-            <div class="nav-list">
-              <a href="/#/tareas" class="list-item">Tareas</a>
-              <a href="/#/usuarios" class="list-item">Usuarios</a>
-              <a href="/#/borrar" class="list-item">Borrar</a>
-            </div>
-          </div>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">Task Tracker</a>
+          <button class="navbar-toggle" type='button' data-toggle='collapse' data-target='.navbar-collapse'>
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+          <li><a href="/#/tareas" class="list-item">Tareas</a></li>
+          <li><a href="/#/usuarios" class="list-item">Usuarios</a></li>
+        </ul>
       </div>
     </div>
-    <div class="hero-wrapper">
+
+    <div class="hero-wrapper hidden-xs">
       <div class="hero-content">
         <div class="hero"></div>
       </div>
@@ -36,31 +41,39 @@
     <script src="/js/librerias/jquery.js"></script>
     <script src="/js/librerias/angular.js"></script>
     <script src="/js/librerias/angular-route.js"></script>
+    <script src="/js/librerias/bootstrap.min.js"></script>
     
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <!-- <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script> -->
     
     <script src="/js/app.js"></script>
     <script src="/js/routes.js"></script>
 
     <!-- Directives -->
     <script src="/js/directives/na-elemento-tarea.js"></script>
+    <script src="/js/directives/na-elemento-usuario.js"></script>
 
     <!-- Services -->
     <script src="/js/services/tarea.js"></script>
+    <script src="/js/services/usuario.js"></script>
     
-    <script src="/js/services/gravatar.js"></script>
+    <!-- <script src="/js/services/gravatar.js"></script> -->
 
     <!-- Resources -->
     <script src="/js/librerias/angular-resource.js"></script>
 
     <!-- Controllers -->
     <script src="/js/controllers/tareas-index-controller.js"></script>
-    <script src="/js/controllers/usuarios-index-controller.js"></script>
     <script src="/js/controllers/tarea-show-controller.js"></script>
     <script src="/js/controllers/tarea-nueva-controller.js"></script>
     <script src="/js/controllers/tarea-borrar-controller.js"></script>
     <script src="/js/controllers/tarea-actualizar-controller.js"></script>
-
+    
+    <script src="/js/controllers/usuarios-index-controller.js"></script>
+    <script src="/js/controllers/usuario-show-controller.js"></script>
+    <script src="/js/controllers/usuario-nueva-controller.js"></script>
+    <script src="/js/controllers/usuario-borrar-controller.js"></script>
+    <script src="/js/controllers/usuario-actualizar-controller.js"></script>
+  
     <!-- Filters -->
 
   </body>

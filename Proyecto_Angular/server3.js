@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 /*var bodyParser = require("body-parser");
 var parseUrlencoded = bodyParser.urlencoded({extended: false});*/
@@ -19,7 +17,8 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 var Usuario = new Schema(
   {
-    nickname: String
+    nickname: String,
+    id: Number
   }
 );
 
@@ -55,6 +54,7 @@ mongoose.connect("mongodb://localhost/angular", function(error_basedatos) {
 
 });
 var id_num=0;
+var id_users = 0;
 
 app.get('/tareas', function(request, response){
 	
@@ -67,7 +67,17 @@ app.get('/tareas', function(request, response){
       console.log("fallo al buscar tareas");
       
     } else {
-      id_num=docs.length+1;   
+      //id_num=docs.length+1;
+      
+      for (var i=0;i<docs.length;i++){
+        if(docs[i].id > id_num){
+          id_num=docs[i].id;
+        }
+        if(i==docs.length-1){
+          id_num=id_num;
+        }
+      }
+         
       response.json(docs);
       
     }
@@ -88,6 +98,7 @@ app.get('/tareas/:id', function(request, response){
 });
 
 app.post('/tareas', function(request, response){
+  console.log("Creando tarea");
   var insert_tarea = new NuevaTareaAngular({title: request.query.header, description: request.query.description, content: "",fecha: new Date, id: id_num});
   insert_tarea.save(function(error) {
     
@@ -100,18 +111,16 @@ app.post('/tareas', function(request, response){
 
     }
   });
-
 });
 
-
 app.put('/tareas/:id', function(request, response){
-  
-  NuevaTareaAngular.findById(request.query.id, function(error_find_tarea,docs_tarea_editar) {
+  console.log("Modificando tarea");
+  NuevaTareaAngular.findOne({id: request.params.id}, function(error_find_tarea,docs_tarea_editar) {
     if(error_find_tarea){
       console.log("fallo al buscar la tarea por id");
     }
     else{
-      docs_tarea_editar.title=request.query.header;
+      docs_tarea_editar.title=request.query.title;
       docs_tarea_editar.description=request.query.description;
       docs_tarea_editar.content="";
       docs_tarea_editar.save(function(err_mongo){
@@ -127,8 +136,8 @@ app.put('/tareas/:id', function(request, response){
 });
 
 app.delete('/tareas/:id', function(request_borrar,response_borrar){
-  console.log(request_borrar.query + request_borrar.params.id);
-  NuevaTareaAngular.findById(request_borrar.params.id, function(err,doc){
+  console.log("Borrando tarea");
+  NuevaTareaAngular.findOne({id: request_borrar.params.id}, function(err,doc){
     if(!doc){
       console.log("Tarea no encontrada para borrar");
     }
@@ -140,12 +149,8 @@ app.delete('/tareas/:id', function(request_borrar,response_borrar){
   });
 });
 
-
-
-
 app.get('/usuarios', function(request, response){
-  
-  
+  console.log("Devolviendo lista de usuarios");
   Usuario.find(function(error_find,docs) {
     
     if (error_find) {
@@ -153,7 +158,16 @@ app.get('/usuarios', function(request, response){
       //response.json(["fallo"]);
       console.log("fallo al buscar usuarios");
       
-    } else {   
+    } else {
+      //id_users=docs.length+1;
+      for (var i=0;i<docs.length;i++){
+        if(docs[i].id > id_users){
+          id_users=docs[i].id;
+        }
+        if(i==docs.length-1){
+          id_users=id_users;
+        }
+      }
       response.json(docs);
       
     }
@@ -162,7 +176,7 @@ app.get('/usuarios', function(request, response){
 });
 
 app.get('/usuarios/:id', function(request, response){
-  
+  console.log("Devolviendo usuario");
   Usuario.find({nickname: request.params.id}, function(error_find_usuario,docs_usuario) {
     if(error_find_usuario){
       console.log("fallo al buscar el usuario por id");
@@ -172,7 +186,6 @@ app.get('/usuarios/:id', function(request, response){
     }
   });
 });
-
 
 app.post('/usuarios',function(request_nuevo_usuario,response_nuevo_usuario){
 
@@ -186,10 +199,11 @@ app.post('/usuarios',function(request_nuevo_usuario,response_nuevo_usuario){
         } else if (docs.length == 0) {
 
           // No existe usuario
-          var insert_user = new Usuario({nickname: request_nuevo_usuario.query.nickname});
+          var insert_user = new Usuario({id: id_users, nickname: request_nuevo_usuario.query.nickname});
           insert_user.save(function(error) {
             
             if (!error) {
+              id_users=id_users+1;
               console.log("Usuario creado");
               //response.json([true, false]);
 
@@ -211,16 +225,16 @@ app.post('/usuarios',function(request_nuevo_usuario,response_nuevo_usuario){
 });
 
 app.put('/usuarios/:id', function(request, response){
-  
-  Usuario.find({nickname: request.query.id}, function(error_find_usuario,docs_usuario_editar) {
+  console.log("Actualizando nickname de usuario " + request.params.id + " con el nuevo nombre: " + request.query.nickname);
+  Usuario.findOne({id: request.params.id}, function(error_find_usuario,docs_usuario_editar) {
     if(error_find_usuario){
       console.log("fallo al buscar el usuario por id");
     }
     else{
-      docs_usuario_editar.title=request.query.id;
+      docs_usuario_editar.nickname=request.query.nickname;
       docs_usuario_editar.save(function(err_mongo){
         if(!err_mongo){
-          console.log("Usuario modificada");
+          console.log("Usuario modificado");
         }
         else{
           console.log("Error al modificar el usuario");
@@ -231,19 +245,17 @@ app.put('/usuarios/:id', function(request, response){
 });
 
 app.delete('/usuarios/:id', function(request_borrar_usuario,response_borrar_usuario){
-  //console.log(request_borrar.query + request_borrar.params.id);
-  Usuario.find({nickname: request_borrar_usuario.params.id}, function(err,doc){
+  console.log("Borrando usuario " + request_borrar_usuario.params.id);
+  Usuario.findOne({id: request_borrar_usuario.params.id}, function(err,doc){
     if(!doc){
-      console.log("Usuario no encontrada para borrar");
+      console.log("Usuario no encontrado para borrar");
     }
     else{
       doc.remove(function(){
-        console.log("Usuario eliminada");
+        console.log("Usuario eliminado");
       });
     }
   });
 });
 
 app.listen(9000);
-
-

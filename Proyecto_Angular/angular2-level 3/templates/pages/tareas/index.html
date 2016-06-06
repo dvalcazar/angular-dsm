@@ -1,5 +1,3 @@
-
-
 <!--<input ng-model="scope[field][subfield]"/>-->
 <input ng-model="search[filter]"/>
 <p>Filtrar por</p>
@@ -14,8 +12,8 @@
 <form id="ordenado" action="" >
   <select class="form-control" ng-model="ordering">
     <option value="">No Ordenar</option>
-    <option value="-date">Fecha ascenedente</option>
-    <option value="+date">Fecha descendente</option>
+    <option value="+fecha">Fecha ascenedente</option>
+    <option value="-fecha">Fecha descendente</option>
   </select>
 </form>
 <div class="note-wrapper">
@@ -33,12 +31,10 @@
         <na-elemento-tarea title="tarea.title"
           description="tarea.description"
           content="tarea.content"
-          identif="tarea.id">
+          identif="tarea.id"
+          date=tarea.fecha>
         </na-elemento-tarea>
       </a>
     </div>
   </div>
 </div>
-
-
-

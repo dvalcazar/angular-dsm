@@ -1,10 +1,14 @@
-
-
+<div class="new-note">
+<div class="new-note-container">
 <div class="card" title="{{title}}">
-  <h2>{{cabecera}}</h2>
+  <!-- <h2>{{cabecera}}</h2> -->
   <h2 class="h3">{{title}}</h2>
   <h3>{{description}}</h3>
   <p class="hidden">Contenido: {{content}}</p>
   <img ng-src='{{image}}' ng-if='image'>
 </div>
-<button id={{identif}}>Borrar</a></button>
+<fieldset class="form-field"><button class="delete form-input" id={{identif}}>Borrar</button></fieldset>
+<fieldset class="form-field"><button class="update form-input" id={{identif}}>Editar</button></fieldset>
+</div>
+</div>
+<br>

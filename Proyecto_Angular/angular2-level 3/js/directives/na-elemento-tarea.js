@@ -10,7 +10,8 @@ angular.module('TareasApp')
         description: '=',
         content: '=',
         image: '=',
-        identif: '='
+        identif: '=',
+        date: '='
       },
       controller: function($scope){
         $scope.cabecera = 'Título común';
@@ -19,9 +20,12 @@ angular.module('TareasApp')
         element.on("click", ".card", function(){
           element.find("div.card p").toggleClass('hidden');
         });
-        element.on("click","button",function(){
+        element.on("click",".delete",function(){
           $(location).attr('href', '#/borrar/'+scope.identif);
-        });      
+        });
+        element.on("click",".update",function(){
+          $(location).attr('href', '#/update/'+scope.identif);
+        });    
       }
     };
   });
